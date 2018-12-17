@@ -45,14 +45,14 @@
       }
 
 
-      function janken(player_hand){
-        // コンピュータの手を決定
-        comp_hand = Math.floor(Math.random() * 3);
+      function tyouhan(player_hand){
+        // コンピュータのサイコロの目を決定
+        comp_dice = Math.floor(Math.random() * 11);
         // 勝敗判定
-        result = judge[player_hand][comp_hand];
+        result = judge[player_hand][comp_dice];
         // 結果表示
         msg="player:"+hand_text[player_hand]+"<br>"+
-            "comp:"+hand_text[comp_hand]+"<br>"+
+            "comp:"+hand_text[comp_dice]+"<br>"+
             "結果:" + judge_text[result];
         $("#result").html(msg);
         // 勝敗ごとの処理
@@ -66,7 +66,7 @@
 
       function newgame() {
         // ハイスコア表示
-        JankenScore.order(key, true).fetch()
+        TyouhanScore.order(key, true).fetch()
         .then(function(result){
           high_score = result.get(key);
           $("#highscore").html("ハイスコア：" + high_score + "連勝");
@@ -80,14 +80,14 @@
         $(".hand").css("display", "inline");
         // ニューゲームボタン非表示
         $("#newgame").css("display", "none");
-        $("#result").html("じゃんけん・・・ぽん")
+        $("#result").html("目は丁か？半か？")
         $("#result2").html("");
       }
 
       function gameover() {
         var msg = "GAME OVER<br>";
         if(win_num>0) {
-          JankenScore.order(key, true).fetch()
+          TyouhanScore.order(key, true).fetch()
           .then(function(result){
             high_score = result.get(key);
             if(win_num > high_score) {
@@ -98,7 +98,7 @@
           });
 
           // スコア記録
-          db = new JankenScore();
+          db = new TyouhanScore();
           db.set(key, win_num).save();
 
           msg += win_num +  "連勝でした。<br>";
