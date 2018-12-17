@@ -23,7 +23,7 @@
         [judge_loose, judge_win],
       ];
       // 勝敗結果表示用配列
-      var judge_text = ["勝ち", 負け"];
+      var judge_text = ["勝ち", "負け"];
 
       // 連勝数記録
       var win_num = 0;
@@ -58,7 +58,7 @@
         // 勝敗ごとの処理
         if(result == judge_win) {
           win_num++;
-          $("#result2").html(win_num + "連勝!")
+          $("#result2").html(win_num + "連勝!");
         } else {
           gameover();
         }
@@ -80,7 +80,7 @@
         $(".hand").css("display", "inline");
         // ニューゲームボタン非表示
         $("#newgame").css("display", "none");
-        $("#result").html("目は丁か？半か？")
+        $("#result").html("目は丁か？半か？");
         $("#result2").html("");
       }
 
@@ -120,7 +120,7 @@
 </head>
 <body>
   <h1 class="text-white bg-primary">サイコロ丁半勝負！</h1>
-  <div id="highscore" class="text-white bg-secondary"></div>
+  <div id="highscore" class="text-red bg-secondary"></div>
   <div class="mx-auto" style="width: 200px">
     <a onclick="tyou();" class="btn btn-outline-primary hand" role="button">丁！</a>
     <a onclick="han();" class="btn btn-outline-primary hand" role="button">半！</a>
