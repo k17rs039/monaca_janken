@@ -16,39 +16,34 @@
       var hand_text = ["丁！", "半！"];
       // 勝敗判定用変数（定数）
       var judge_win=0;
-      var judge_draw=1;
-      var judge_loose=2;
+      var judge_loose=1;
       // 勝敗判定表
       var judge = [
-        [judge_draw, judge_win, judge_loose],
-        [judge_loose, judge_draw, judge_win],
-        [judge_win, judge_loose, judge_draw],
+        [judge_win, judge_loose],
+        [judge_loose, judge_win],
       ];
       // 勝敗結果表示用配列
-      var judge_text = ["勝ち", "あいこ", "負け"];
+      var judge_text = ["勝ち", 負け"];
 
       // 連勝数記録
       var win_num = 0;
 
       // にふくら用おまじない
       var ncmb = new NCMB(appKey, clientKey);
-      var JankenScore = ncmb.DataStore("JankenScore");
+      var TyouhanScore = ncmb.DataStore("TyouhanScore");
       var key = "score";
 
       // ハイスコア
       var high_score = 0;
 
-      function gu() {
-        janken(hand_gu);
+      function tyou() {
+        tyouhan(dice_tyou);
       }
 
-      function choki() {
-        janken(hand_choki);
+      function han() {
+        tyouhan(dice_han);
       }
 
-      function pa() {
-        janken(hand_pa);
-      }
 
       function janken(player_hand){
         // コンピュータの手を決定
