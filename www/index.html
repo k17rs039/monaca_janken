@@ -10,12 +10,12 @@
     <script src="keys.js"></script>
     <script>
       // 丁半勝負の変数（定数）
-      var dice_tyou=0;
-      var dice_han=1;
+      var dice_tyou = 0;
+      var dice_han= 1;
       // 丁半表示用配列
       var hand_text = ["丁！", "半！"];
       // 勝敗判定用変数（定数）
-      var judge_win=0;
+      var judge_win= 0;
       var judge_loose=1;
       // 勝敗判定表
       var judge = [
@@ -23,7 +23,7 @@
         [judge_loose, judge_win],
       ];
       // 勝敗結果表示用配列
-      var judge_text = ["勝ち", "負け"];
+      var judge_text = ["勝利！", "敗北…"];
 
       // 連勝数記録
       var win_num = 0;
@@ -47,7 +47,7 @@
 
       function tyouhan(player_hand){
         // コンピュータのサイコロの目を決定
-        comp_dice = Math.floor(Math.random() * 11);
+        comp_dice = Math.floor(Math.random() * 12);
         // 勝敗判定
         result = judge[player_hand][comp_dice];
         // 結果表示
@@ -85,13 +85,13 @@
       }
 
       function gameover() {
-        var msg = "GAME OVER<br>";
+        var msg = "終了！<br>";
         if(win_num>0) {
           TyouhanScore.order(key, true).fetch()
           .then(function(result){
             high_score = result.get(key);
             if(win_num > high_score) {
-              $("#result").html("ハイスコア更新!");
+              $("#result").html("ハイスコア更新！");
             }
           })
           .catch(function(error){
@@ -101,9 +101,9 @@
           db = new TyouhanScore();
           db.set(key, win_num).save();
 
-          msg += win_num +  "連勝でした。<br>";
+          msg += win_num +  "連勝した！<br>次はハイスコア更新を狙え！";
         } else {
-          msg += "1回も勝てませんでした。<br>次は頑張ろう";
+          msg += "1回も勝つことが出来なかった。<br>次は頑張れ！";
         }
         $("#result2").html(msg);
         // ハンドボタン非表示
@@ -119,12 +119,12 @@
     </script>
 </head>
 <body>
-  <h1 class="text-white bg-primary">サイコロ丁半勝負！</h1>
-  <div id="highscore" class="text-red bg-secondary"></div>
+  <h1 class="text-white bg-success">サイコロ丁半勝負！</h1>
+  <div id="highscore" class="text-red bg-warning"></div>
   <div class="mx-auto" style="width: 200px">
     <a onclick="tyou();" class="btn btn-outline-primary hand" role="button">丁！</a>
     <a onclick="han();" class="btn btn-outline-primary hand" role="button">半！</a>
-    <a onclick="newgame();" class="btn btn-info text-white" id="newgame" role="button">もう一度</a>
+    <a onclick="newgame();" class="btn btn-outline-info" id="newgame" role="button">もう一回？</a>
   </div>
   <div id="result" class="text-white bg-secondary">
   </div>
